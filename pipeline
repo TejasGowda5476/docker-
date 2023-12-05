@@ -3,7 +3,12 @@ pipeline{
     stages{
         stage("for pull"){
             steps{
-                sh "docker run -d --name dev httpd"
+                sh "docker run -d --name dev1 httpd"
+            }
+        }
+        stage("for awscli"){
+            steps{
+                sh"aws.html"
             }
         }
     }

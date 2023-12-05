@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("for pull"){
             steps{
-                sh "docker run -d --name dev httpd"
+                sh "sudo docker run -d --name dev httpd"
             }
         }
     }

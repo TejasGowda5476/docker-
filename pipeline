@@ -8,7 +8,7 @@ pipeline{
         }
         stage("for awscli"){
             steps{
-                sh"aws.yml"
+                sh"/var/lib/jenkins/workspace/${JOB_Name}/aws.yml"
             }
         }
     }

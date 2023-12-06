@@ -3,13 +3,13 @@ pipeline{
     stages{
         stage("for pull"){
             steps{
-                sh "docker run -d --name dev4 httpd"
+                sh "docker run -d --name dev5 httpd"
             }
         }
         stage("for awscli"){
             steps{
                 sh '''
-                docker exec dev4 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                docker exec dev5 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                 '''
             }
         }

@@ -1,17 +1,30 @@
-pipeline{
+pipeline {
     agent any
     stages{
-        stage("for pull"){
+        stage("for pull") {
             steps{
-                sh "docker run -d --name dev5 httpd"
+                sh "docker run -d --name dev4 httpd"
             }
         }
-        stage("for awscli"){
+        stage("for login"){
             steps{
+            sh "docker exec dev4 apt-get update"
+            }
+                }
+        stage("for awscli") {
+            steps{
+                sh "docker exec dev4 apt-get install -y curl"
                 sh '''
-                docker exec dev5 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                docker exec dev4 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                 '''
             }
         }
     }
+    post{
+        always{
+            sh "docker stop dev4"
+            sh "docker container prune -f"
+        }
+    }
 }
+

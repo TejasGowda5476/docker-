@@ -1,17 +1,17 @@
 pipeline {
     agent any
     stages{
-        stage("for pull") {
+        stage("Run as container") {
             steps{
                 sh "docker run -d --name dev4 httpd"
             }
         }
-        stage("for login"){
+        stage("once login into container"){
             steps{
             sh "docker exec dev4 apt-get update"
             }
                 }
-        stage("for awscli") {
+        stage("want to install awscli") {
             steps{
                 sh "docker exec dev4 apt-get install -y curl"
                 sh '''
